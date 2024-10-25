@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="">
+<head>
+    <meta charset="UTF-8">
+    <title>Jira</title>
+    <link rel="stylesheet" href="styles/reset.css">
+    <link rel="stylesheet" href="styles/styles.css">
+    <link rel="stylesheet" href="styles/dropdown.css">
+    <script src="js/visual.js"></script>
+    <script src="js/global.js"></script>
+    <script src="js/filter.js"></script>
+    <script src="js/table.js"></script>
+    <script src="js/task.js"></script>
+    <script src="js/drag_n_drop.js"></script>
+</head>
+<body>
+<div class="container">
+    <div class="filter-block">
+        <div class="dropdown-check-list filter-el" tabindex="100">
+            <span class="anchor">Select Epic</span>
+            <ul class="items" id="epic-filter">
+                <li><label><input type="checkbox" value="All" checked/>All</label></li>
+            </ul>
+        </div>
+        <div class="dropdown-check-list filter-el" tabindex="100">
+            <span class="anchor">Select Label</span>
+            <ul class="items" id="label-filter">
+                <li><label><input type="checkbox" value="All" checked/>All</label></li>
+            </ul>
+        </div>
+    </div>
+
+    <!--
+    <div class="myHeader">
+        <div class="headerEl">stt</div>
+        <div class="headerEl">stt</div>
+        <div class="headerEl">stt</div>
+        <div class="headerEl">stt</div>
+        <div class="headerEl">stt</div>
+        <div class="headerEl">stt</div>
+    </div>
+    <div class="myTable">
+        <div class="row" id="row-1">
+            <div class="task" id="task-1">
+                <div class="name"><a draggable="false" href="https://google.com">Изучить работу топиков</a></div>
+                <span class="epic"> Kafka </span>
+                <span class="type"> regular </span>
+                <div class="labels">
+                    <span>label1</span>
+                    <span>label2</span>
+                    <span>label3</span>
+                </div>
+                <div class="task-footer">
+                    <div class="icons">
+                        <img class="priority" src="jira_priority/major.svg">
+                        <img class="priority" src="jira_priority/minor.svg">
+                        <img class="priority" src="jira_priority/trivial.svg">
+                    </div>
+                    <span class="timeout"> 4sp </span>
+                </div>
+            </div>
+        </div>
+        <div class="row" id="row-2">
+            <div class="task" id="task-2">2</div>
+            <div class="task" id="task-3">3</div>
+        </div>
+        <div class="row" id="row-3">
+            <div class="task" id="task-4">4</div>
+        </div>
+        <div class="row" id="row-4">
+            <div class="task" id="task-5">5</div>
+            <div class="task" id="task-6">6</div>
+            <div class="task" id="task-8">7</div>
+        </div>
+        <div class="row" id="row-5">
+            <div class="task" id="task-7">8</div>
+        </div>
+        <div class="row" id="row-6">
+            <div class="task" id="task-9">9</div>
+        </div>
+    </div>
+    -->
+</div>
+</body>
+
+<script>
+    let tasksJsonStr = `[
+  {
+    "id": "id1",
+    "status": "ToDo",
+    "name": "Изучить работу топиков",
+    "epic": "Kafka",
+    "type": "regular",
+    "labels": [
+      "label_1",
+      "label_2",
+      "label_3"
+    ],
+    "icons": [
+      "jira_priority/major.svg",
+      "jira_priority/minor.svg",
+      "jira_priority/trivial.svg"
+    ],
+    "timeout": "16h",
+    "sp": "4sp"
+  },
+  {
+    "id": "id2",
+    "status": "ToDo",
+    "name": "Подключить Wifi",
+    "epic": "Microtech",
+    "type": "regular",
+    "labels": [
+      "arduino",
+      "raspberry"
+    ],
+    "icons": [
+      "jira_priority/minor.svg",
+      "jira_priority/trivial.svg"
+    ],
+    "timeout": "10h",
+    "sp": "4sp"
+  },
+  {
+    "id": "id3",
+    "status": "ToDo",
+    "name": "Подключить Bluetooth",
+    "epic": "Microtech",
+    "type": "regular",
+    "labels": [
+      "arduino",
+      "raspberry"
+    ],
+    "icons": [
+      "jira_priority/minor.svg",
+      "jira_priority/trivial.svg"
+    ],
+    "timeout": "10h",
+    "sp": "4sp"
+  },
+  {
+    "id": "id4",
+    "status": "ToDo",
+    "name": "Подключить ИК-модуль",
+    "epic": "Microtech",
+    "type": "regular",
+    "labels": [
+      "arduino",
+      "raspberry"
+    ],
+    "icons": [
+      "jira_priority/minor.svg",
+      "jira_priority/trivial.svg"
+    ],
+    "timeout": "1h",
+    "sp": "1sp"
+  },
+  {
+    "id": "id5",
+    "status": "ToDo",
+    "name": "Подключить ИК-Датчик",
+    "epic": "Microtech",
+    "type": "regular",
+    "labels": [
+      "arduino",
+      "raspberry"
+    ],
+    "icons": [
+      "jira_priority/minor.svg",
+      "jira_priority/trivial.svg"
+    ],
+    "timeout": "10h",
+    "sp": "4sp"
+  },
+  {
+    "id": "id6",
+    "status": "ToDo",
+    "name": "Соединить Arduino и Raspberry",
+    "epic": "Microtech",
+    "type": "regular",
+    "labels": [
+      "arduino",
+      "raspberry"
+    ],
+    "icons": [
+      "jira_priority/major.svg",
+      "jira_priority/trivial.svg"
+    ],
+    "timeout": "10h",
+    "sp": "4sp"
+  },
+  {
+    "id": "id7",
+    "status": "ToDo",
+    "name": "Изучить библиотеку ebiten",
+    "epic": "Golang",
+    "type": "long",
+    "labels": [
+      "games",
+      "libs"
+    ],
+    "icons": [
+      "jira_priority/major.svg",
+      "jira_priority/trivial.svg"
+    ],
+    "timeout": "100h",
+    "sp": "40sp"
+  },
+  {
+    "id": "id8",
+    "status": "ToDo",
+    "name": "Изучить работу с сетями",
+    "epic": "Golang",
+    "type": "long",
+    "labels": [
+      "nets",
+      "libs"
+    ],
+    "icons": [
+      "jira_priority/trivial.svg"
+    ],
+    "timeout": "100h",
+    "sp": "40sp"
+  }
+]`
+    let statuses = ["Backlog", "ToDo", "Investigating", "Hold", "InProgress", "Done"]
+
+    setupDropdownVisual()
+
+    GlobalData.masterTasks = JSON.parse(tasksJsonStr)
+    updFilterElement(GlobalData.masterTasks)
+    let container = document.querySelector('.container')
+    let tableHeaderElement = tableHeader(statuses)
+    container.append(tableHeaderElement)
+
+    let tableGen = table(statuses)
+    container.append(tableGen.el)
+    GlobalData.statusesMP = tableGen.mp
+
+    renderTasks(GlobalData.statusesMP, GlobalData.masterTasks)
+</script>
+
+
+</html>

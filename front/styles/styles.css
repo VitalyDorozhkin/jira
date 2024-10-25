@@ -1,0 +1,151 @@
+.container {
+    background: gray;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    font-family: "Apple Braille", monospace;
+}
+
+.filter-block{
+    display: flex;
+    align-self: end;
+}
+
+.filter-el {
+    margin: 10px;
+    background: whitesmoke;
+    color: dimgrey;
+}
+
+.myHeader {
+    background: #cdf3ff;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: stretch;
+}
+
+.headerEl {
+    background: blanchedalmond;
+    text-align: center;
+    width: 180px;
+    height: 30px;
+    margin: 15px;
+    padding: 10px;
+    font-size: 20px;
+    font-family: "Apple Braille", monospace;
+}
+
+.myTable {
+    background: blanchedalmond;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: stretch;
+}
+
+.row {
+    display: flex;
+    justify-content: flex-start;
+    background: aliceblue;
+    flex-direction: column;
+    margin: 5px;
+
+    border-radius: 6px;
+}
+
+.task {
+    border-radius: 6px;
+    background: #9ed4d5;
+    width: 180px;
+    min-height: 150px;
+    margin: 10px;
+    padding: 10px;
+    font-family: "Apple Braille", monospace;
+    cursor: grab;
+
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    align-items: first baseline;
+
+}
+
+.task-footer{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.task-remove {
+    transition: height 0.5s ease, min-height 0.5s ease, margin 0.5s ease, padding 0.5s ease;
+    visibility: hidden;
+    height: 0;
+    min-height: 0;
+    margin: 0;
+    padding: 0;
+}
+
+.task-box {
+    width: 200px;
+    height: 200px;
+    margin: 10px;
+}
+
+.task-box-on {
+    box-sizing: border-box;
+    border: dashed pink;
+}
+
+.name{
+    font-size: 20px;
+}
+
+.priority{
+    height: 20px;
+    width: 20px;
+}
+
+.epic{
+    font-size: 16px;
+    background: bisque;
+    padding: 2px;
+    border-radius: 8px;
+}
+
+.type{
+    font-size: 14px;
+    background: coral;
+    padding: 2px;
+    border-radius: 7px;
+}
+
+.labels{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.labels>span{
+    display: block;
+    font-size: 12px;
+    margin: 2px;
+    padding: 2px;
+    background: indianred;
+    border-radius: 8px;
+}
+
+.task-selected{
+    backdrop-filter: blur(80px);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+li {
+    list-style: none;
+}
+
